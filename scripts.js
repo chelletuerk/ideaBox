@@ -37,10 +37,10 @@ function createCard(title, body) {
   var body = body;
   $('.ideas').append('<article>\
   <h1>'+title+'</h1>\
-  <button>delete</button>\
+  <button id="delete-btn">delete</button>\
   <p>'+body+'</p>\
-  <button>up</button>\
-  <button>down</button>\
+  <button id="up-btn">up</button>\
+  <button id="down-btn">down</button>\
   <h2>quality</h2>\
 </article>')
 };
