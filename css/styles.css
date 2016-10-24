@@ -1,0 +1,56 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  background-color: #E5F3F2;
+  height: 40vh;
+  width: 100%;
+  padding-top: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+  }
+
+summary {
+  display: block;
+  margin:  10px auto;
+}
+
+input {
+  display: inline-block;
+  margin: 10px auto;
+  height: 30px;
+  width: 60vw;
+}
+.ideas {
+  text-align: center;
+}
+.save {
+  background-color: #00A79D;
+  border: none;
+  color: #FFF;
+  display: inline-block;
+  height: 30px;
+  margin:  10px auto;
+  width: 60vw;
+}
+
+.save:hover {
+  background-color: #045E55;
+}
+
+#idealogo {
+  color: #00A79D;
+  display: inline;
+  font-family: 'Roboto Slab', serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#boxlogo{
+  color: #6D6E71;
+  display: inline;
+  font-family: 'Roboto Slab', serif;
+  font-size: 40px;
+  font-weight: bold;
+}
