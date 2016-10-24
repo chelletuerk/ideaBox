@@ -54,3 +54,52 @@ input {
   font-size: 40px;
   font-weight: bold;
 }
+
+article {
+  border-bottom: 1px solid #607D8B;
+  padding: 10px 15px;
+  position: relative;
+  width: 60vw;
+  height: 100px;
+  margin: 20px auto;
+}
+
+article h1 {
+position: absolute;
+left: 0;
+top: 0;
+font-size: 40px;
+}
+
+article p{
+  position: absolute;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  width: 100%;
+  overflow: scroll;
+
+}
+
+#delete-btn{
+position: absolute;
+right: 0;
+top: 0;
+}
+
+#up-btn{
+position: absolute;
+left: 0;
+bottom: 0;
+}
+
+#down-btn{
+position: absolute;
+left: 10%;
+bottom: 0;
+}
+
+h2{
+position: absolute;
+left: 20%;
+bottom: 0;
+}
