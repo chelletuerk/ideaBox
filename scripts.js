@@ -5,8 +5,7 @@ $('.save').on('click', function(e){
   var title = $title.val();
   var body = $body.val();
   var idea = new Idea(title, body);
-  //call on storeIdea prototype
-  //call on function that displays new ideas
+  storeIdea(idea);
   createCard(title, body);
   $title.val("");
   $body.val("");
@@ -22,7 +21,7 @@ function Idea(title, body) {
   this.body = body;
   this.quality = 'swill';
 }
-//save new idea to local storage
+
 Idea.prototype.storeIdea = function(idea) {
   //get all ideas from local storage (JSON parse)
   //push new idea to end of ideas array from local storage at end of array
