@@ -13,9 +13,7 @@ $('document').ready( function() {
 
 function repopulate() {
     for (i=0; ideaArray.length; i++) {
-    var title = ideaArray[i].title;
-    var body = ideaArray[i].body;
-    createCard(title, body);
+      createCard(ideaArray[i]);
   }
 }
 
@@ -24,14 +22,26 @@ $('.save').on('click', function(e){
   var body = $body.val();
   var idea = new Idea(title, body);
   storeIdea(idea);
-  createCard(title, body);
+  createCard(idea);
   $title.val("");
   $body.val("");
 });
 
 $("#ideas").on("click", "#delete-btn", function(){
   $(this).closest("article").remove();
+  var id=this.closest("article").id;
+  deleteIdea(id);
 });
+
+function deleteIdea (id) {
+  for (i=0; ideaArray.length; i++) {
+    var ideaID = ideaArray[i].id;
+    if (id == ideaID) {
+      ideaArray.splice(i, 1);
+    }
+    localStorage.setItem("ideaArray",JSON.stringify(ideaArray));
+  }
+}
 
 function Idea(title, body) {
   this.id = Date.now();
@@ -45,21 +55,20 @@ function storeIdea (idea) {
   localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
 };
 
-function createCard(title, body) {
-  var title = title;
-  var body = body;
-  $('#ideas').prepend('<article class="newIdea">\
-  <h1>'+title+'</h1>\
-  <button id="delete-btn">delete</button>\
-  <p>'+body+'</p>\
-  <button id="up-btn">up</button>\
-  <button id="down-btn">down</button>\
-  <h2>quality</h2>\
-</article>')
+
+function createCard(idea) {
+  $('#ideas').prepend(`<article class="newIdea" id=${idea.id}>
+  <h1>${idea.title}</h1>
+  <button id="delete-btn"></button>
+  <p>${idea.body}</p>
+  <button id="up-btn"></button>
+  <button id="down-btn"></button>
+  <h2>quality: ${idea.quality}</h2>
+</article>`)
 };
 
 
-//ROUGH DRAFT FOR QUALITY RATINGS
+// ROUGH DRAFT FOR QUALITY RATINGS
 // $('up').on('click', function(){
 // var quality = function() {
 //
