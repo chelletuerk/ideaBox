@@ -50,10 +50,10 @@ function createCard(title, body) {
   var body = body;
   $('#ideas').prepend('<article class="newIdea">\
   <h1>'+title+'</h1>\
-  <button id="delete-btn">delete</button>\
+  <button id="delete-btn"></button>\
   <p>'+body+'</p>\
-  <button id="up-btn">up</button>\
-  <button id="down-btn">down</button>\
+  <button id="up-btn"></button>\
+  <button id="down-btn"></button>\
   <h2>quality</h2>\
 </article>')
 };
