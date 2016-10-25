@@ -2,6 +2,23 @@ var ideaArray = [];
 var $title = $('#title');
 var $body = $('#body');
 
+$('document').ready( function() {
+  var holdingValue = JSON.parse(localStorage.getItem("ideaArray"));
+  if (holdingValue){
+    ideaArray = holdingValue;
+    repopulate();
+  }
+});
+
+
+function repopulate() {
+    for (i=0; ideaArray.length; i++) {
+    var title = ideaArray[i].title;
+    var body = ideaArray[i].body;
+    createCard(title, body);
+  }
+}
+
 $('.save').on('click', function(e){
   var title = $title.val();
   var body = $body.val();
@@ -24,9 +41,7 @@ function Idea(title, body) {
 }
 
 function storeIdea (idea) {
-  // localStorage.setItem('ideaArray', ideaArray);
-  // JSON.parse(localStorage.getItem(ideaArray));
-  ideaArray.push(idea.id, idea);
+  ideaArray.push(idea);
   localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
 };
 
