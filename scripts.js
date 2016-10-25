@@ -19,6 +19,29 @@ $('.save').on('click', function(e){
   $title.val("");
   $body.val("");
 });
+
+
+//ROUGH DRAFT FOR QUALITY RATINGS
+// $('up').on('click', function(){
+// var quality = function() {
+//
+//   this.upQuality =  {
+//     "genius": "genius",
+//     "plausible": "genius",
+//     "swill": "plausible"
+//   }
+// }
+//
+//   this.downQuality = {
+//     "swill": "swill",
+//     "plausible": "swill",
+//     "genius": "plausible"
+//   }
+// }
+//
+// upQuality[currentValue]
+// downQuality[currentValue]
+
 //save new idea to local storage
 Idea.prototype.storeIdea = function(idea) {
   //get all ideas from local storage (JSON parse)
@@ -35,7 +58,7 @@ var myJSONString = JSON.stringify(array);
 function createCard(title, body) {
   var title = title;
   var body = body;
-  $('.ideas').append('<article>\
+  $('.ideas').append('<article class="newIdea">\
   <h1>'+title+'</h1>\
   <button id="delete-btn">delete</button>\
   <p>'+body+'</p>\
