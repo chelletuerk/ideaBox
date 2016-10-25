@@ -22,7 +22,7 @@ input {
   height: 30px;
   width: 60vw;
 }
-.ideas {
+#ideas {
   text-align: center;
 }
 .save {
