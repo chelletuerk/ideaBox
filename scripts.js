@@ -1,5 +1,5 @@
-var $title = $('#title')
-var $body = $('#body')
+var $title = $('#title');
+var $body = $('#body');
 //create object w/ input fields
 function Idea(title, body) {
   this.id = Date.now();
@@ -19,6 +19,11 @@ $('.save').on('click', function(e){
   $title.val("");
   $body.val("");
 });
+
+$("#ideas").on("click", "#delete-btn", function(){
+  $(this).closest("article").remove();
+});
+
 //save new idea to local storage
 Idea.prototype.storeIdea = function(idea) {
   //get all ideas from local storage (JSON parse)
@@ -35,7 +40,7 @@ var myJSONString = JSON.stringify(array);
 function createCard(title, body) {
   var title = title;
   var body = body;
-  $('.ideas').append('<article>\
+  $('#ideas').append('<article class="newIdea">\
   <h1>'+title+'</h1>\
   <button id="delete-btn">delete</button>\
   <p>'+body+'</p>\
