@@ -16,13 +16,15 @@
       <summary>
         <h1 id="idealogo">idea</h1><h1 id="boxlogo">box</h1>
       </summary>
-      <input type="text" id="title" placeHolder="Title">
-      <input type="text" id="body" placeHolder="Body">
-      <button class="save">Save</button>
+      <form>
+        <textarea type="text" id="title" placeHolder="Title"></textarea>
+        <textarea type="text" id="body" placeHolder="Body"></textarea>
+        <input type="submit" value="save" class="save">
+      </form>
     </header>
 
    <section class="search">
-      <input type="text" id="search" placeHolder="Search">
+      <textarea type="text" id="search" placeHolder="Search"></textarea>
    </section>
 
     <section id="ideas">
@@ -33,3 +35,18 @@
         <script src="scripts.js"></script>
   </body>
 </html>
+
+<!-- <article class="newIdea" id=${idea.id}>
+  <div id = "card-top">
+    <h1 id="ideaTitle" contenteditable>${idea.title}</h1>
+    <button id="delete-btn"></button>
+  </div>
+  <div id = "card-middle">
+    <p id="ideaBody" contenteditable>${idea.body}</p>
+  </div>
+  <div id = "card-bottom">
+    <button id="up-btn"></button>
+    <button id="down-btn"></button>
+    <h2 id="quality">quality: ${idea.quality}</h2>
+  </div>
+</article> -->
