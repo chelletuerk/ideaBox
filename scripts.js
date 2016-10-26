@@ -67,12 +67,18 @@ function storeIdea (idea) {
 
 function createCard(idea) {
   $('#ideas').prepend(`<article class="newIdea" id=${idea.id}>
-    <h1 id="ideaTitle" contenteditable="true">${idea.title}</h1>
-    <button id="delete-btn"></button>
-    <p id="ideaBody" contenteditable="true">${idea.body}</p>
-    <button id="up-btn"></button>
-    <button id="down-btn"></button>
-    <h2>quality: ${idea.quality}</h2>
+    <div id = "card-top">
+      <h1 id="ideaTitle" contenteditable>${idea.title}</h1>
+      <button id="delete-btn"></button>
+    </div>
+    <div id = "card-middle">
+      <p id="ideaBody" contenteditable>${idea.body}</p>
+    </div>
+    <div id = "card-bottom">
+      <button id="up-btn"></button>
+      <button id="down-btn"></button>
+      <h2 id="quality">quality: ${idea.quality}</h2>
+    </div>
   </article>`);
 }
 
@@ -112,7 +118,7 @@ $("#ideas").on('click', "#down-btn", function(){
 $('#ideas').on('keyup blur', "#ideaTitle", function(e) {
   if (e.which == 13 || e.type === "focusout") {
     e.preventDefault();
-    var id = +$(this).parent().attr('id');
+    var id = +$(this).closest("article").attr('id');
     var currentIdea = findIdeaByID(id);
     var ideaTitle = currentIdea.title;
     var newTitle = $(this).text();
@@ -129,7 +135,7 @@ $('#ideas').on('keyup blur', "#ideaTitle", function(e) {
 $('#ideas').on('keyup blur', "#ideaBody", function(e) {
   if (e.which == 13 || e.type === "focusout") {
     e.preventDefault();
-    var id = +$(this).parent().attr('id');
+    var id = +$(this).closest("article").attr('id');
     var currentIdea = findIdeaByID(id);
     var ideaBody = currentIdea.body;
     var newBody = $(this).text();
