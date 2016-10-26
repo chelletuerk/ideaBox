@@ -89,7 +89,7 @@ function findIdeaByID(id) {
 }
 
 $("#ideas").on('click', "#up-btn", function(){
-  var id = +$(this).parent().attr('id');
+  var id = +$(this).closest("article").attr('id');
   var currentIdea = findIdeaByID(id);
   var ideaQuality = currentIdea.quality;
   ideaArray.forEach(function(idea) {
@@ -102,7 +102,7 @@ $("#ideas").on('click', "#up-btn", function(){
 });
 
 $("#ideas").on('click', "#down-btn", function(){
-  var id = +$(this).parent().attr('id');
+  var id = +$(this).closest("article").attr('id');
   var currentIdea = findIdeaByID(id);
   var ideaQuality = currentIdea.quality;
   ideaArray.forEach(function(idea) {
