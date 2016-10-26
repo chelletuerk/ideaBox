@@ -29,6 +29,33 @@ function renderArray() {
   }
 }
 
+// Search function
+//
+$('#search').on('keyup', function(e) {
+  var searchText = e.target.value;
+  var matches = ideaArray.filter(function(idea) {
+    return idea.body.includes(searchText) || idea.title.includes(searchText)
+  });
+  if (matches) return render(matches);
+  return render();
+});
+
+function render(givenArray) {
+  var renderArray;
+  if (givenArray) renderArray = givenArray;
+  if (!givenArray) renderArray = ideaArray;
+  $('#ideas').empty();
+  for (var i = 0; i < givenArray.length; i++) {
+  createCard(givenArray[i]);
+
+
+  // // givenArray.forEach(function(idea) {
+  // //   for (var i = 0; i < givenArray.length; i++) {
+  // //     createCard(givenArray[i]);
+
+  }
+};
+
 $('.save').on('click', function(e){
   var title = $title.val();
   var body = $body.val();
@@ -91,8 +118,8 @@ $("#ideas").on('click', "#up-btn", function(){
       idea.quality = qualityChangers.up[ideaQuality];
     }
   });
+  $(this).siblings("h2").text("quality: "+qualityChangers.up[ideaQuality]);
   localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
-  renderArray();
 });
 
 $("#ideas").on('click', "#down-btn", function(){
@@ -104,8 +131,9 @@ $("#ideas").on('click', "#down-btn", function(){
       idea.quality = qualityChangers.down[ideaQuality];
     }
   });
+
+  $(this).siblings("h2").text("quality: "+qualityChangers.down[ideaQuality]);
   localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
-  renderArray();
 });
 
 
