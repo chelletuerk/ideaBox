@@ -1,19 +1,31 @@
 var ideaArray = [];
 var $title = $('#title');
 var $body = $('#body');
+var qualityChangers = {
+  up: {
+    genius: "genius",
+    plausible: "genius",
+    swill: "plausible"
+  },
+  down: {
+    genius: "plausible",
+    plausible: "swill",
+    swill: "swill"
+  }
+}
 
 $('document').ready( function() {
   var holdingValue = JSON.parse(localStorage.getItem("ideaArray"));
   if (holdingValue){
     ideaArray = holdingValue;
-    repopulate();
+    render();
   }
 });
 
-
-function repopulate() {
-    for (i=0; ideaArray.length; i++) {
-      createCard(ideaArray[i]);
+function render() {
+  $('#ideas').empty()
+  for (var i = 0; i < ideaArray.length; i++) {
+    createCard(ideaArray[i]);
   }
 }
 
@@ -29,22 +41,20 @@ $('.save').on('click', function(e){
 
 $("#ideas").on("click", "#delete-btn", function(){
   $(this).closest("article").remove();
-  var id=this.closest("article").id;
+  var id = this.closest("article").id;
   deleteIdea(id);
 });
 
 function deleteIdea (id) {
-  for (i=0; ideaArray.length; i++) {
-    var ideaID = ideaArray[i].id;
-    if (id == ideaID) {
-      ideaArray.splice(i, 1);
-    }
+  for (var i = 0; i < ideaArray.length; i++) {
+    var ideaId = ideaArray[i].id;
+    if (id == ideaId) ideaArray.splice(i, 1);
     localStorage.setItem("ideaArray",JSON.stringify(ideaArray));
   }
 }
 
 function Idea(title, body) {
-  this.id = Date.now();
+  this.id = new Date().getTime();
   this.title = title;
   this.body = body;
   this.quality = 'swill';
@@ -55,36 +65,45 @@ function storeIdea (idea) {
   localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
 };
 
-
 function createCard(idea) {
   $('#ideas').prepend(`<article class="newIdea" id=${idea.id}>
-  <h1>${idea.title}</h1>
-  <button id="delete-btn"></button>
-  <p>${idea.body}</p>
-  <button id="up-btn"></button>
-  <button id="down-btn"></button>
-  <h2>quality: ${idea.quality}</h2>
-</article>`)
+    <h1>${idea.title}</h1>
+    <button id="delete-btn"></button>
+    <p>${idea.body}</p>
+    <button id="up-btn"></button>
+    <button id="down-btn"></button>
+    <h2>quality: ${idea.quality}</h2>
+  </article>`)
 };
 
+function findIdeaByID(id) {
+  return ideaArray.filter(function(idea) {
+    return idea.id === id
+  })[0]
+}
 
-// ROUGH DRAFT FOR QUALITY RATINGS
-// $('up').on('click', function(){
-// var quality = function() {
-//
-//   this.upQuality =  {
-//     "genius": "genius",
-//     "plausible": "genius",
-//     "swill": "plausible"
-//   }
-// }
-//
-//   this.downQuality = {
-//     "swill": "swill",
-//     "plausible": "swill",
-//     "genius": "plausible"
-//   }
-// }
-//
-// upQuality[currentValue]
-// downQuality[currentValue]
+$("#ideas").on('click', "#up-btn", function(){
+  var id = +$(this).parent().attr('id')
+  var currentIdea = findIdeaByID(id);
+  var ideaQuality = currentIdea.quality;
+  ideaArray.forEach(function(idea) {
+    if (idea.id === id) {
+      idea.quality = qualityChangers.up[ideaQuality];
+    }
+  });
+  localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
+  render();
+});
+
+$("#ideas").on('click', "#down-btn", function(){
+  var id = +$(this).parent().attr('id')
+  var currentIdea = findIdeaByID(id);
+  var ideaQuality = currentIdea.quality;
+  ideaArray.forEach(function(idea) {
+    if (idea.id === id) {
+      idea.quality = qualityChangers.down[ideaQuality];
+    }
+  });
+  localStorage.setItem("ideaArray", JSON.stringify(ideaArray));
+  render();
+});
