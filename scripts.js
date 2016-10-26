@@ -32,9 +32,9 @@ function renderArray() {
 // Search function
 //
 $('#search').on('keyup', function(e) {
-  var searchText = e.target.value;
+  var searchText = e.target.value.toLowerCase();
   var matches = ideaArray.filter(function(idea) {
-    return idea.body.includes(searchText) || idea.title.includes(searchText)
+    return idea.body.toLowerCase().includes(searchText) || idea.title.toLowerCase().includes(searchText)
   });
   if (matches) return render(matches);
   return render();
