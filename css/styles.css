@@ -76,7 +76,7 @@ article p{
   margin-top: 40px;
   margin-bottom: 10px;
   width: 100%;
-  overflow: scroll;
+  /*overflow: scroll;*/
 
 }
 
@@ -130,6 +130,6 @@ background-image: url('../images/downvote-hover.svg');
 
 h2{
 position: absolute;
-left: 20%;
+left: 15%;
 bottom: 0;
 }
