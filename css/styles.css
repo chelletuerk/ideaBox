@@ -149,8 +149,7 @@ background-image: url('../images/downvote-hover.svg');
 
 #quality {
 display: inline;
+
 /*position: absolute;*/
 color: #6D6E71;
-left: 20%;
-bottom: 0;
 }

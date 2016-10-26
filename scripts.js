@@ -47,12 +47,6 @@ function render(givenArray) {
   $('#ideas').empty();
   for (var i = 0; i < givenArray.length; i++) {
   createCard(givenArray[i]);
-
-
-  // // givenArray.forEach(function(idea) {
-  // //   for (var i = 0; i < givenArray.length; i++) {
-  // //     createCard(givenArray[i]);
-
   }
 };
 
