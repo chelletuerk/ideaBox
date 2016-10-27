@@ -3,16 +3,8 @@ var sortedArray = [];
 var $title = $('#title');
 var $body = $('#body');
 var qualityChangers = {
-  up: {
-    genius: "genius",
-    plausible: "genius",
-    swill: "plausible"
-  },
-  down: {
-    genius: "plausible",
-    plausible: "swill",
-    swill: "swill"
-  }
+  up: {genius: "genius", plausible: "genius", swill: "plausible"},
+  down: {genius: "plausible", plausible: "swill", swill: "swill"}
 };
 
 $('document').ready( function() {
@@ -33,7 +25,6 @@ $('#search').on('keyup', function(e) {
 });
 
 function render(givenArray) {
-  var renderArray;
   if (givenArray) renderArray = givenArray;
   if (!givenArray) renderArray = ideaArray;
   $('#ideas').empty();
@@ -42,7 +33,7 @@ function render(givenArray) {
   }
 }
 
-$('.save').on('click', function(e){
+$('#save').on('click', function(e){
   var title = $title.val();
   var body = $body.val();
   var idea = new Idea(title, body);
@@ -81,11 +72,11 @@ function storeIdea (idea) {
 function createCard(idea) {
   $('#ideas').prepend(`<article class="newIdea" id=${idea.id}>
     <div id = "card-top">
-      <h1 id="ideaTitle" contenteditable>${idea.title}</h1>
+      <h1 id="idea-title" contenteditable>${idea.title}</h1>
       <button id="delete-btn"></button>
     </div>
     <div id = "card-middle">
-      <p id="ideaBody" contenteditable>${idea.body}</p>
+      <p id="idea-body" contenteditable>${idea.body}</p>
     </div>
     <div id = "card-bottom">
       <button id="up-btn"></button>
@@ -129,7 +120,7 @@ $("#ideas").on('click', "#down-btn", function(){
 });
 
 
-$('#ideas').on('keyup blur', "#ideaTitle", function(e) {
+$('#ideas').on('keyup blur', "#idea-title", function(e) {
   if (e.which == 13 || e.type === "focusout") {
     e.preventDefault();
     var id = +$(this).closest("article").attr('id');
@@ -145,7 +136,7 @@ $('#ideas').on('keyup blur', "#ideaTitle", function(e) {
   }
 });
 
-$('#ideas').on('keyup blur', "#ideaBody", function(e) {
+$('#ideas').on('keyup blur', "#idea-body", function(e) {
   if (e.which == 13 || e.type === "focusout") {
     e.preventDefault();
     var id = +$(this).closest("article").attr('id');
@@ -161,7 +152,7 @@ $('#ideas').on('keyup blur', "#ideaBody", function(e) {
   }
 });
 
-$('.sort').on('click', function(e) {
+$('#sort').on('click', function(e) {
   if (!sortOrder) {
     render(downSort())
     sortOrder = !sortOrder
@@ -180,3 +171,13 @@ function upSort() {
 function downSort() {
   return ideaArray.sort(function(a, b) { return a.quality < b.quality })
 }
+
+$("#title, #body").keyup(function(){
+  var checkTitle = /\S/.test($("#title").val());
+  var checkBody = /\S/.test($("#body").val());
+  if(checkTitle && checkBody){
+    $("#save").attr("disabled", false);
+  } else {
+    $("#save").attr("disabled", true);
+  }
+});
