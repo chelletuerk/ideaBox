@@ -21,13 +21,13 @@ $("#title, #body").keyup(function(){
   var checkTitle = /\S/.test($("#title").val());
   var checkBody = /\S/.test($("#body").val());
   if(checkTitle && checkBody){
-    $(".save").attr("disabled", false);
+    $("#save").attr("disabled", false);
   } else {
-    $(".save").attr("disabled", true);
+    $("#save").attr("disabled", true);
   }
 });
 
-$('.save').on('click', function(e){
+$('#save').on('click', function(e){
   var idea = new Idea($title.val(), $body.val());
   storeIdea(idea);
   createCard(idea);
@@ -108,7 +108,7 @@ $('#ideas').on('keyup blur', "#ideaBody", function(e) {
   }
 });
 
-$('.sort').on('click', function(e) {
+$('#sort').on('click', function(e) {
   if (!sortOrder) {
     sort();
     render(sortedArray);
