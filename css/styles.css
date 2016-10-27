@@ -4,7 +4,7 @@ body {
 
 header {
   background-color: #E5F3F2;
-  height: 250px;
+  height: 280px;
   width: 100%;
   padding-top: 10px;
   text-align: center;
@@ -29,7 +29,7 @@ textarea {
   height: 70px;
 }
 
-.save {
+.button {
   font-size: 18px;
   font-family: 'Open Sans', sans-serif;
   background-color: #00A79D;
@@ -37,27 +37,28 @@ textarea {
   color: #FFF;
   display: inline-block;
   height: 30px;
-  margin:  10px auto;
+  margin:  5px auto;
   width: 92vw;
 }
 
-.save:hover {
+.button:hover {
   background-color: #045E55;
 }
 
 .search {
+  margin-top: 5px;
   position: relative;
   text-align: center;
 }
 
-#idealogo {
+#idea-logo {
   color: #00A79D;
   display: inline;
   font-family: 'Roboto Slab', serif;
   font-size: 40px;
 }
 
-#boxlogo{
+#box-logo{
   color: #6D6E71;
   display: inline;
   font-family: 'Roboto Slab', serif;
@@ -86,16 +87,19 @@ article {
   border-bottom: 1px solid #607D8B;
 }
 
-#ideaTitle {
+#idea-title {
   position: absolute;
   font-family: 'Roboto Slab', serif;
   color: #6D6E71;
   left: 0;
   top: 0;
-  font-size: 25px;
+  font-size: 24px;
+  height: 30px;
+  overflow: scroll;
+
 }
 
-#ideaBody{
+#idea-body{
   color: #939598;
   text-align: left;
 
@@ -154,4 +158,27 @@ article {
   margin-left: 30px;
   /*position: absolute;*/
   color: #6D6E71;
+}
+
+@media screen and (min-width: 768px) {
+
+textarea {
+  font-size: 20px;
+  display: block;
+  margin: 5px auto;
+  width: 400px;
+  resize: none;
+  border: 1px solid #D1D3D4;
+}
+
+#body {
+  height: 30px;
+}
+
+.button {
+  width: 400px;
+}
+
+.newIdea {
+  width: 400px;
 }
