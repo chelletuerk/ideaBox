@@ -163,22 +163,20 @@ $('#ideas').on('keyup blur', "#ideaBody", function(e) {
 
 $('.sort').on('click', function(e) {
   if (!sortOrder) {
-    sort();
-    render(sortedArray);
+    render(downSort())
+    sortOrder = !sortOrder
   } else {
-    render(sortedArray.reverse());
+    render(upSort())
+    sortOrder = !sortOrder
   }
 });
 
 var sortOrder = false;
-function sort() {
-  var qualityArray = ['swill', 'plausible','genius'];
-  qualityArray.forEach(function(quality){
-    ideaArray.forEach(function(idea){
-      if (quality === idea.quality) {
-        sortedArray.push(idea);
-      }
-    });
-  });
-  sortOrder = !sortOrder;
+
+function upSort() {
+  return ideaArray.sort(function(a, b) { return a.quality > b.quality })
+}
+
+function downSort() {
+  return ideaArray.sort(function(a, b) { return a.quality < b.quality })
 }
